@@ -5,6 +5,7 @@
       <StackLayout.Children>
         <!---Heading-->
         <Label Text ="Fight Statistics" FontSize ="40" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" />
+        <ActivityIndicator IsVisible="{Binding Path=Loading}" IsRunning="{Binding Path=Loading}" Color="Black"/>
         <!---Content-->
         <ScrollView Orientation ="Vertical" VerticalOptions="FillAndExpand">
           <StackLayout VerticalOptions="StartAndExpand">

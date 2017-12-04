@@ -83,11 +83,34 @@ namespace RisikoApp.ViewModel
         {
             this.stats = stats;
             this.roundsGrid = roundsGrid;
+
             AttackerLostAbs = stats.getAttackerLostAbs().ToString();
             DefenderLostAbs = stats.getDefenderLostAbs().ToString();
             AttackerLostRel = stats.getAttackerLostRel().ToString();
             DefenderLostRel = stats.getDefenderLostRel().ToString();
+
             buildRoundGrid();
+            //loadStatistics();
+        }
+
+        //Not used yet because it is slower then the sequentiell approach
+        private async void loadStatistics()
+        {
+            blockUI();
+            var a = new Task<int>(stats.getAttackerLostAbs);
+            a.Start();
+            var b = new Task<int>(stats.getDefenderLostAbs);
+            b.Start();
+            var c = new Task<double>(stats.getAttackerLostRel);
+            c.Start();
+            var d = new Task<double>(stats.getDefenderLostRel);
+            d.Start();
+            AttackerLostAbs = (await a).ToString();
+            DefenderLostAbs = (await b).ToString();
+            AttackerLostRel = (await c).ToString();
+            DefenderLostRel = (await d).ToString();
+            buildRoundGrid();
+            releaseUI();
         }
 
         private void buildRoundGrid()

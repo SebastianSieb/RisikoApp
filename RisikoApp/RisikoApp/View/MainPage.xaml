@@ -5,6 +5,7 @@
       <StackLayout.Children>
         <!---Heading-->
         <Label Text ="Risiko Simulator" FontSize ="40" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" />
+        <ActivityIndicator IsVisible="{Binding Path=Loading}" IsRunning="{Binding Path=Loading}" Color="Black"/>
         <!---Content-->
         <ScrollView Orientation ="Vertical" VerticalOptions="FillAndExpand">
           <StackLayout VerticalOptions="StartAndExpand">
@@ -62,8 +63,8 @@
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Button Text =" Run  " FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.0" Command ="{Binding Path=Run}"  Grid.Row="0" Grid.Column="2"/>
-                <Button Text ="Reset" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.0" Command ="{Binding Path=Reset}" Grid.Row="0" Grid.Column="1"/>
+                <Button Text =" Run  " FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.0" Command ="{Binding Path=Run}" IsEnabled ="{Binding Path=Enable}" Grid.Row="0" Grid.Column="2"/>
+                <Button Text ="Reset" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.0" Command ="{Binding Path=Reset}" IsEnabled ="{Binding Path=Enable}" Grid.Row="0" Grid.Column="1"/>
               </Grid>
               <!--Seperator-->
               <BoxView HeightRequest="3" WidthRequest="100" BackgroundColor="Black"/>
@@ -91,7 +92,7 @@
               </Grid>
               <!--Seperator-->
               <BoxView HeightRequest="3" WidthRequest="100" BackgroundColor="Black"/>
-             <Button Text ="View Statistics" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.0" Command ="{Binding Path=Stats}"/>
+             <Button Text ="View Statistics" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.0" Command ="{Binding Path=Stats}" IsEnabled ="{Binding Path=Enable}"/>
             </StackLayout.Children>
           </StackLayout>
         </ScrollView>
