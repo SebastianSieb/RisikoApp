@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Risiko"
+             x:Class="Risiko.View.MainPage">
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions ="StartAndExpand">
+            <StackLayout.Children>
+                <!---Heading-->
+                <Label Text ="Risiko Simulator" FontSize ="40" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" />
+                <ActivityIndicator IsVisible="{Binding Path=Loading}" IsRunning="{Binding Path=Loading}" Color="Black"/>
+                <!---Content-->
+                <ScrollView Orientation ="Vertical" VerticalOptions="FillAndExpand">
+                    <StackLayout VerticalOptions="StartAndExpand">
+                        <StackLayout.Children>
+                            <!--Seperator-->
+                            <BoxView HeightRequest="3" WidthRequest="100" BackgroundColor="Black"/>
+                            <!--Attacker-->
+                            <Label Text ="Attacker" FontSize ="30" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Red"/>
+                            <Grid>
+                                <Grid.ColumnSpacing>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="10" WinPhone="200"/>
+                                </Grid.ColumnSpacing>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text ="Units" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold" FontSize ="20" Grid.Row="0" Grid.Column="0"/>
+                                <Entry Text ="{Binding Path=UnitsAttacker, Mode=TwoWay}" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
+                                <Label Text ="Dices" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold" FontSize ="20" Grid.Row="1" Grid.Column="0"/>
+                                <Entry Text ="{Binding Path=DicesAttacker, Mode=TwoWay}" Keyboard="Numeric" Grid.Row="1" Grid.Column="1"/>
+                            </Grid>
+                            <!--Seperator-->
+                            <BoxView HeightRequest="3" WidthRequest="100" BackgroundColor="Black"/>
+                            <!--Deffender-->
+                            <Label Text ="Defender" FontSize ="30" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Blue"/>
+                            <Grid>
+                                <Grid.ColumnSpacing>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="10" WinPhone="200"/>
+                                </Grid.ColumnSpacing>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text ="Units" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold" FontSize ="20" Grid.Row="0" Grid.Column="0"/>
+                                <Entry Text="{Binding Path=UnitsDefender, Mode=TwoWay}" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"/>
+                                <Label Text ="Dices" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold" FontSize ="20" Grid.Row="1" Grid.Column="0"/>
+                                <Entry Text ="{Binding Path=DicesDefender, Mode=TwoWay}" Keyboard="Numeric" Grid.Row="1" Grid.Column="1"/>
+                            </Grid>
+                            <!--Seperator-->
+                            <BoxView HeightRequest="3" WidthRequest="100" BackgroundColor="Black"/>
+                            <!---Rounds Section-->
+                            <Label Text ="Rounds" FontSize ="30" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Black"/>
+                            <Entry Text ="{Binding Path=Rounds, Mode=TwoWay}" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+                            <Grid>
+                                <Grid.ColumnSpacing>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="10" WinPhone="200"/>
+                                </Grid.ColumnSpacing>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Button Text =" Run  " FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.0" Command ="{Binding Path=Run}" IsEnabled ="{Binding Path=Enable}" Grid.Row="0" Grid.Column="2"/>
+                                <Button Text ="Reset" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.0" Command ="{Binding Path=Reset}" IsEnabled ="{Binding Path=Enable}" Grid.Row="0" Grid.Column="1"/>
+                            </Grid>
+                            <!--Seperator-->
+                            <BoxView HeightRequest="3" WidthRequest="100" BackgroundColor="Black"/>
+                            <Grid>
+                                <Grid.ColumnSpacing>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="10" WinPhone="200"/>
+                                </Grid.ColumnSpacing>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <!--Tabel Headings-->
+                                <Label Text="Attacker" FontSize ="Large" FontAttributes="Bold" Grid.Row="0" Grid.Column="1" TextColor="Red"/>
+                                <Label Text="Defender" FontSize ="Large" FontAttributes="Bold" Grid.Row="0" Grid.Column="2" TextColor="Blue"/>
+                                <!--Units Total-->
+                                <Label Text="Units Total" FontSize ="Medium" FontAttributes="Bold" TextColor="Black" Grid.Row="1" Grid.Column="0" />
+                                <Label Text="{Binding Path=UnitsTotalAttacker}" FontSize ="Medium" TextColor="Black" FontAttributes="Bold" Grid.Row="1" Grid.Column="1" />
+                                <Label Text="{Binding Path=UnitsTotalDefender}" FontSize ="Medium" TextColor="Black" FontAttributes="Bold" Grid.Row="1" Grid.Column="2" />
+                                <!--Units Lost-->
+                                <Label Text="Units Lost" FontSize ="Medium" FontAttributes="Bold" TextColor="Black" Grid.Row="2" Grid.Column="0" />
+                                <Label Text="{Binding Path=UnitsLostAttacker}" FontSize ="Medium" TextColor="Black" FontAttributes="Bold" Grid.Row="2" Grid.Column="1" />
+                                <Label Text="{Binding Path=UnitsLostDefender}" FontSize ="Medium" TextColor="Black" FontAttributes="Bold" Grid.Row="2" Grid.Column="2" />
+                            </Grid>
+                            <!--Seperator-->
+                            <BoxView HeightRequest="3" WidthRequest="100" BackgroundColor="Black"/>
+                            <Button Text ="View Statistics" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.0" Command ="{Binding Path=Stats}" IsEnabled ="{Binding Path=Enable}"/>
+                        </StackLayout.Children>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout.Children>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
